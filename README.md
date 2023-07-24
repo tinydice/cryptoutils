@@ -1,6 +1,6 @@
-# BIP39 Mnemonic Wallet Generator
+# Bitcoin Wallet Generator
 
-This Python script generates BIP39 mnemonic wallets and derived addresses based on the provided input.
+This Python script generates bitcoin wallets from a mnemonic (or cold-card dice-roll) and derived addresses based on the provided input.
 
 ## Installation
 
