@@ -9,10 +9,10 @@ This Python script generates bitcoin wallets from a mnemonic (or cold-card dice-
 
 	pip install --no-index --find-links -r requirements.txt
 
-# cryptoutils
+## Usage
 
 1. Fill out config.json
-	a. input can be dice-roll or mnemonic
+	a. input can be dice-roll (string) or mnemonic (with spaces between each word)
 	b. wallet types can be BIP44, BIP49 or BIP84. 
 	c. gap limit = number of addresses generated. 
 	d. set is_private = True if you do not want to see the WIFs (expose private key on screen). 
