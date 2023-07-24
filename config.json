@@ -2,6 +2,7 @@
     "input": "inhale anger power wreck cook million manage crawl grief inside cat panel",
     "word_count": 12,
     "passphrase": "",
-    "wallet_types": "BIP84",
-    "gap_limit": 5
+    "wallet_types": "BIP44",
+    "gap_limit": 5,
+    "is_private": false
 }

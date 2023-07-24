@@ -24,7 +24,7 @@ class BitcoinAccount:
         self.passphrase = self.info['passphrase']
         self.walletTypes = self.info['wallet_types']
         self.walletTypes = [self.walletTypes] if isinstance(self.walletTypes, str) else self.walletTypes
-
+        self.isPrivate = self.info['is_private']
         if self.input == "":
             self.seedType = seedType.DICE_ROLL
             rolls = []
@@ -66,20 +66,20 @@ class BitcoinAccount:
 
             self.wallets.append(Wallet(self.seed, self.addressType, self.path, self.gapLimit))
 
-    def spillAddresses(self, isPrivate=True):
+    def spillAddresses(self):
         print(f'Mnemonic:')
         print(f"    {self.mnemonic} {self.passphrase}")
         for i in range(len(self.wallets)) :
             wallet_type = self.walletTypes[i]
             print(f'Addresses:         ({wallet_type})')
             for address in self.wallets[i].addresses:
-                address.spill_address(isPrivate)
+                address.spill_address(self.isPrivate)
             print(f'Change Addresses:  ({wallet_type})')
             for changeAddress in self.wallets[i].changeAddresses:
-                changeAddress.spill_address(isPrivate)
+                changeAddress.spill_address(self.isPrivate)
 def main():
     account = BitcoinAccount()
-    account.spillAddresses(False)
+    account.spillAddresses()
 
 if __name__ == "__main__":
     main()
