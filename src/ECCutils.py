@@ -2,6 +2,7 @@ from io import BytesIO
 import hashlib
 import hmac
 from bech32 import *
+from .MATHutils import *
 
 A = 0
 B = 7
@@ -40,17 +41,7 @@ def decode_base58(base58_string):
 
     return num.to_bytes(82, byteorder='big')
 
-def hash160(data):
-    """sha256 followed by ripemd160"""
-    return hashlib.new('ripemd160', hashlib.sha256(data).digest()).digest()
 
-def sha256(data):
-    '''one round of sha256'''
-    return hashlib.sha256(data).digest()
-
-def hash256(data):
-    '''two rounds of sha256'''
-    return hashlib.sha256(hashlib.sha256(data).digest()).digest()
 
 def bytes_to_byte_groups(input_bytes, grouping):
     binary_str = ''.join(format(byte, '08b') for byte in input_bytes)

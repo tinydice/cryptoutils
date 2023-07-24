@@ -5,8 +5,8 @@ from a mnemonic according to the BIP32 spec
 """
 
 from hashlib import sha512
-from ECCutils import *
-from WALLETutils import *
+from .ECCutils import *
+from .FORMATutils import *
 
 class extendedKey:
     """

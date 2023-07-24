@@ -1,9 +1,4 @@
-from Address import *
-from enum import Enum
-
-class addressType(Enum):
-    BIP84 = 1
-    BIP49 = 2
+from .ADDRESSutils import *
 
 class Wallet:
     def __init__(self, seed, addressType, path, gapLimit):

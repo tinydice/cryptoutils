@@ -1,6 +1,6 @@
-from BIP32utils import *
-from WALLETutils import *
-from COLORutils import green, red
+from .BIP32utils import *
+from .FORMATutils import *
+from .COLORutils import green, red
 
 class Address:
     def __init__(self, seed, path, addressType):

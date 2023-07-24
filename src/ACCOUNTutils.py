@@ -1,7 +1,7 @@
-from BIP39utils import *
+from .BIP39utils import *
 import os
 import json
-from Wallet import *
+from .WALLETutils import *
 from enum import Enum
 
 class seedType(Enum):
@@ -12,7 +12,7 @@ BIP44_PATH = "m/44'/0'/0'/"
 BIP49_PATH = "m/49'/0'/0'/"
 BIP84_PATH = "m/84'/0'/0'/"
 
-class BitcoinAccount:
+class Account:
     def __init__(self, jsonName='config.json'):
         self.jsonName = jsonName
         if not jsonName.endswith('.json'):
@@ -77,9 +77,3 @@ class BitcoinAccount:
             print(f'Change Addresses:  ({wallet_type})')
             for changeAddress in self.wallets[i].changeAddresses:
                 changeAddress.spill_address(self.isPrivate)
-def main():
-    account = BitcoinAccount()
-    account.spillAddresses()
-
-if __name__ == "__main__":
-    main()

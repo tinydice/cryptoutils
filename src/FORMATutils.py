@@ -1,4 +1,5 @@
-from ECCutils import *
+from .ECCutils import *
+from .MATHutils import *
 
 def convert_path(path_string):
     components = path_string.split('/')[1:]  # Split the string and remove the leading 'm'
@@ -25,16 +26,6 @@ def get_pubkey(private_key_bytes):
 
 def pubkey_to_P2PKH(pubkey_bytes):
     return encode_base58_checksum(b'\x00' + hash160(pubkey_bytes))
-
-# def pubkey_to_P2SHpP2WSH(pubkey_bytes):
-#     witness_script = hash160(pubkey_bytes)
-#     script_hash = sha256(witness_script)
-#     redeem_script = b'\x00\x20' + script_hash
-#     script_hash = b'\x05' + hash160(redeem_script)
-#     return encode_base58_checksum(script_hash)
-#
-#     bech32_encode()
-#     convertbits()
 
 def pubkey_to_P2SHpP2WPKH(pubkey_bytes):
     redeem_script = b'\x00\x14' + hash160(pubkey_bytes)
