@@ -4,17 +4,9 @@ This module allows you to derive master and child private and public keys
 from a mnemonic according to the BIP32 spec
 """
 
-import hmac
 from hashlib import sha512
-from io import BytesIO
-from ECCutils import S256Point, N, G
-from keymath import (
-    get_pubkey,
-    decode_base58,
-    encode_base58_checksum,
-    hash160,
-    hash256
-)
+from ECCutils import *
+from WALLETutils import *
 
 class extendedKey:
     """
@@ -218,3 +210,20 @@ class extendedKey:
             result += self.key
 
         return encode_base58_checksum(result)
+
+def derivation_path_string(path, private=True):
+    """
+    This function returns a string friendly version of the derivation path
+    """
+    if private:
+        result = "m"
+    else:
+        result = "M"
+    for item in path:
+        result += "/"
+        index, hardened = item
+        if hardened:
+            result += str(index) + "'"
+        else:
+            result += str(index)
+    return result

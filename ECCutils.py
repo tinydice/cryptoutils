@@ -1,14 +1,13 @@
 from io import BytesIO
-from random import randint
-from unittest import TestCase
-
 import hashlib
 import hmac
+from bech32 import *
 
 A = 0
 B = 7
 P = 2**256 - 2**32 - 977
 N = 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141
+BASE58_ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 
 def encode_base58(s):
     # determine how many 0 bytes (b'\x00') s starts with
@@ -30,10 +29,35 @@ def encode_base58(s):
 def encode_base58_checksum(s):
     return encode_base58(s + hash256(s)[:4])
 
-def hash160(s):
-    '''sha256 followed by ripemd160'''
-    return new('ripemd160', sha256(s).digest()).digest()
+def decode_base58(base58_string):
+    """
+    This function decodes a base58 string to a number
+    """
+    num = 0
+    for char in base58_string:
+        num *= 58
+        num += BASE58_ALPHABET.index(char)
 
+    return num.to_bytes(82, byteorder='big')
+
+def hash160(data):
+    """sha256 followed by ripemd160"""
+    return hashlib.new('ripemd160', hashlib.sha256(data).digest()).digest()
+
+def sha256(data):
+    '''one round of sha256'''
+    return hashlib.sha256(data).digest()
+
+def hash256(data):
+    '''two rounds of sha256'''
+    return hashlib.sha256(hashlib.sha256(data).digest()).digest()
+
+def bytes_to_byte_groups(input_bytes, grouping):
+    binary_str = ''.join(format(byte, '08b') for byte in input_bytes)
+    padded_binary_str = binary_str.zfill((len(binary_str) + grouping - 1) // grouping * grouping)
+    byte_groups = [padded_binary_str[i:i+grouping] for i in range(0, len(padded_binary_str), grouping)]
+    output_bytes = bytes(int(group, 2) for group in byte_groups)
+    return output_bytes
 
 class FieldElement:
 
@@ -385,18 +409,4 @@ class PrivateKey:
             k = hmac.new(k, v + b'\x00', s256).digest()
             v = hmac.new(k, v, s256).digest()
 
-    def wif(self, compressed=True, testnet=False):
-        # convert the secret from integer to a 32-bytes in big endian using num.to_bytes(32, 'big')
-        secret_bytes = self.secret.to_bytes(32, 'big')
-        # prepend b'\xef' on testnet, b'\x80' on mainnet
-        if testnet:
-            prefix = b'\xef'
-        else:
-            prefix = b'\x80'
-        # append b'\x01' if compressed
-        if compressed:
-            suffix = b'\x01'
-        else:
-            suffix = b''
-        # encode_base58_checksum the whole thing
-        return encode_base58_checksum(prefix + secret_bytes + suffix)
+

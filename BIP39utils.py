@@ -201,3 +201,14 @@ def get_seed(mnemonic_bytes, passphrase=None):
     salt = ("mnemonic" + passphrase).encode("utf8")
     seed = hashlib.pbkdf2_hmac('sha512', mnemonic_bytes, salt, 2048, )
     return seed
+
+def generate_dice_roll():
+    while True:
+        roll = int.from_bytes(os.urandom(1), byteorder="big") % 6 + 1
+        yield roll
+
+def generate_100_dice_rolls(generator):
+    rolls = []
+    for _ in range(100):
+        rolls.append(next(generator))
+    return rolls
