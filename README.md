@@ -19,7 +19,7 @@ This Python script generates bitcoin wallets from a mnemonic (or cold-card dice-
 
 1. Read the warnings. 
 2. Fill out config.json
-	a. input: 
+a. 	input: 
 		i. Mnemonic "inhale anger power ... " (bip39 compliant string with spaces between each word)
 		ii. Dice roll (cold-card). Eg. "0123456". (string of integers 0-9)
 		iii. Blank (random paper wallet). Eg. "".
