@@ -23,16 +23,16 @@ This Python script generates bitcoin wallets from a mnemonic (or cold-card dice-
 	    * Item 2a
     * Item 2b
 3. Fill out config.json
-a. 	input: 
+	* input: 
 		i. Mnemonic "inhale anger power ... " (bip39 compliant string with spaces between each word)
 		ii. Dice roll (cold-card). Eg. "0123456". (string of integers 0-9)
 		iii. Blank (random paper wallet). Eg. "".
-	b. word_count: Set the number of words in your mnemonic (or how many you want). Eg. 12 or 24. (positive integer)
+	* word_count: Set the number of words in your mnemonic (or how many you want). Eg. 12 or 24. (positive integer)
 		i. This value is only used for dice-roll or blank inputs. 
-	c. passphrase: Set your string password (13th/25th mnemonic word). Eg. "PASSWORD123" (any string)
-	d. wallet_types: Set wallet type (public key type). Eg. "BIP44" (Legacy) or "BIP49" (P2WPKH) or "BIP84" (bech32 segwit). (string)
-	e. gap_limit: Set how many deposit and change addresses you want to see (each). Eg. 5 or 10 or 11 or 1000. (any positive integer)
-	f. is_private: Set True if you do NOT want to print the private key WIF. (boolean)
+	* passphrase: Set your string password (13th/25th mnemonic word). Eg. "PASSWORD123" (any string)
+	* wallet_types: Set wallet type (public key type). Eg. "BIP44" (Legacy) or "BIP49" (P2WPKH) or "BIP84" (bech32 segwit). (string)
+	* gap_limit: Set how many deposit and change addresses you want to see (each). Eg. 5 or 10 or 11 or 1000. (any positive integer)
+	* is_private: Set True if you do NOT want to print the private key WIF. (boolean)
 
     
 ## WARNINGS
