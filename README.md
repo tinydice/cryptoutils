@@ -5,11 +5,11 @@ This Python script generates bitcoin wallets from a mnemonic (or cold-card dice-
 ## Installation
 
 1. Clone the repository or download the script file.
-2a. Run main.py and install packages that cause 'missing module' errors.
+2a. Run main.py and install packages that cause 'missing module' errors:
 
  	pip install <missing-package>
   
-2b. Install the required libraries by running the following command:
+2b. Install the required libraries by running the following command (I have not tested this yet):
 
 	pip install --no-index --find-links -r requirements.txt
  
@@ -34,7 +34,7 @@ This Python script generates bitcoin wallets from a mnemonic (or cold-card dice-
 1. input:
     * If you enter a mnemonic. DO NOT run this script on a device that has been or will ever connect to the internet. (Unless you are willing to lose all funds). 
     * If you enter a blank input. DO NOT use any wallet derived to store funds (Unless you are willing to lose all funds).
-2. wallet_types: While the same public key is used 
+2. wallet_types: While the same public key is used to derive all three deposit address formats availible in this code - each deposit address format is to be considered a unique wallet.  
 3. is_private:
     * Since private key WIFs are still calculated (and just not printed if is_private = True). Do not think of this as a security feature - input warnigns still apply.
 4. I am not legally responsible for the loss of funds resulting in the misuse of any python code in this repository. 
