@@ -29,7 +29,12 @@ This Python script generates bitcoin wallets from a mnemonic (or cold-card dice-
 	* wallet_types: Set wallet type (public key type). Eg. "BIP44" (Legacy) or "BIP49" (P2WPKH) or "BIP84" (bech32 segwit). (string)
 	* gap_limit: Set how many deposit and change addresses you want to see (each). Eg. 5 or 10 or 11 or 1000. (any positive integer)
 	* is_private: Set True if you do NOT want to print the private key WIF. (boolean)
-
+4. Alert policy recommendations: In this step, you and the stakeholders will review the noisiest policies using the following criteria:
+    * Do the alerts have any business impact?
+    * Are the policies properly configured?
+        * Are they telling us something about the resource that needs to be fixed?
+        * Are the policies necessary? Do they have business impact?
+        * Are the thresholds set properly?
     
 ## WARNINGS
 1. input:
