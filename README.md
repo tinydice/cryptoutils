@@ -1,4 +1,4 @@
-# Bitcoin Wallet Generator
+# Bitcoin Wallet Generator (FOR TESTING PURPOSES ONLY)
 
 This Python script generates bitcoin wallets from a mnemonic (or cold-card dice-roll) and derived addresses based on the provided input.
 
