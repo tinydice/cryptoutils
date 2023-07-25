@@ -11,8 +11,8 @@ class Wallet:
         self.addresses = []
         self.changeAddresses = []
         for addressNum in range(gapLimit):
-            self.addressPaths.append(path+ '0/'+str(addressNum))
-            self.changeAddressPaths.append(path+'1/'+str(addressNum))
+            self.addressPaths.append(path+ '/0/'+str(addressNum))
+            self.changeAddressPaths.append(path+'/1/'+str(addressNum))
         self.path = path
 
         self.addresses = []

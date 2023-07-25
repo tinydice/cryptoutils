@@ -1,16 +1,17 @@
-from .BIP39utils import *
 import os
 import json
-from .WALLETutils import *
 from enum import Enum
+from .WALLETutils import *
+from .BIP32utils import *
+from .BIP39utils import *
 
 class seedType(Enum):
     DICE_ROLL = 1
     MNEMONIC = 2
 
-BIP44_PATH = "m/44'/0'/0'/"
-BIP49_PATH = "m/49'/0'/0'/"
-BIP84_PATH = "m/84'/0'/0'/"
+BIP44_PATH = "m/44'/0'/0'"
+BIP49_PATH = "m/49'/0'/0'"
+BIP84_PATH = "m/84'/0'/0'"
 
 class Account:
     def __init__(self, jsonName='config.json'):
@@ -24,7 +25,9 @@ class Account:
         self.passphrase = self.info['passphrase']
         self.walletTypes = self.info['wallet_types']
         self.walletTypes = [self.walletTypes] if isinstance(self.walletTypes, str) else self.walletTypes
+        self.gapLimit = self.info['gap_limit']
         self.isPrivate = self.info['is_private']
+
         if self.input == "":
             self.seedType = seedType.DICE_ROLL
             rolls = []
@@ -48,10 +51,7 @@ class Account:
             self.entropyHash = None
             self.mnemonic = self.input
 
-        self.seed = get_seed(self.mnemonic.encode('utf-8'), self.passphrase)
-
         self.wallets = []
-        self.gapLimit = self.info['gap_limit']
 
         for walletType in self.walletTypes:
             if (walletType == 'BIP44'):
@@ -64,13 +64,19 @@ class Account:
                 self.path = BIP84_PATH
                 self.addressType = 'bech32'
 
-            self.wallets.append(Wallet(self.seed, self.addressType, self.path, self.gapLimit))
+            self.seed = get_seed(self.mnemonic.encode('utf-8'), self.passphrase)
+            self.root_xprv = extendedKey.parse_from_seed(self.seed)
+            self.xprv = self.root_xprv.derive_child_xprv(convert_path(self.path))
+            self.derived_addr_prv = self.root_xprv.derive_child_xprv(convert_path(self.path))
+            self.xpub = self.derived_addr_prv.derive_pubkey()
+
+            self.wallets.append(Wallet(self.root_xprv, self.addressType, self.path, self.gapLimit))
 
     def spillAddresses(self):
-        print(f'XPUB:')
-        print(f"    {self.wallets[0].addresses[0].xpub.serialize()}")
         print(f'Mnemonic:')
         print(f"    {self.mnemonic} {self.passphrase}")
+        print(f'XPUB:')
+        print(f"    {self.xpub.serialize()}")
         for i in range(len(self.wallets)) :
             wallet_type = self.walletTypes[i]
             print(f'Addresses:         ({wallet_type})')

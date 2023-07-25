@@ -1,9 +1,9 @@
+from bech32 import *
 from .ECCutils import *
 from .MATHutils import *
 
 def convert_path(path_string):
     components = path_string.split('/')[1:]  # Split the string and remove the leading 'm'
-
     path = []
     for component in components:
         if "'" in component:

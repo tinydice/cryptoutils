@@ -1,4 +1,5 @@
 import hashlib
+
 def hash160(data):
     """sha256 followed by ripemd160"""
     return hashlib.new('ripemd160', hashlib.sha256(data).digest()).digest()

@@ -1,4 +1,5 @@
 from src.ACCOUNTutils import *
+
 def main():
     account = Account()
     account.spillAddresses()

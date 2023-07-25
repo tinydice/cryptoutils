@@ -1,7 +1,5 @@
 from io import BytesIO
-import hashlib
 import hmac
-from bech32 import *
 from .MATHutils import *
 
 A = 0

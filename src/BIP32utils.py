@@ -1,11 +1,4 @@
-#pylint: disable=too-many-arguments
-"""
-This module allows you to derive master and child private and public keys
-from a mnemonic according to the BIP32 spec
-"""
-
 from hashlib import sha512
-from .ECCutils import *
 from .FORMATutils import *
 
 class extendedKey:

@@ -1,20 +1,16 @@
-from .BIP32utils import *
 from .FORMATutils import *
 from .COLORutils import green, red
 
 class Address:
-    def __init__(self, seed, path, addressType):
+    def __init__(self, root_xprv, path, addressType):
         self.path = path
-        self.seed = seed
         self.addressType = addressType
-        self.root_xprv = extendedKey.parse_from_seed(self.seed)
+        self.root_xprv = root_xprv
         self.derived_addr_prv = self.root_xprv.derive_child_xprv(convert_path(self.path))
-        self.xprv = self.root_xprv.derive_child_xprv(convert_path(self.path[:-4]))
-        self.derived_addr_pub = self.derived_addr_prv.derive_pubkey()  # Added self
-        self.xpub = self.xprv.derive_pubkey()  # Added self
-        self.private_key = self.derived_addr_prv.key  # Added self
-        self.wif = bytes_priv_to_wif(self.private_key)  # Added self
-        self.public_key = self.derived_addr_pub.key  # Added self
+        self.derived_addr_pub = self.derived_addr_prv.derive_pubkey()
+        self.private_key = self.derived_addr_prv.key
+        self.wif = bytes_priv_to_wif(self.private_key)
+        self.public_key = self.derived_addr_pub.key
 
         if (self.addressType == "P2PKH"):
             self.address = pubkey_to_P2PKH(self.public_key)
