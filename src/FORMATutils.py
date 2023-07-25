@@ -63,3 +63,17 @@ def wif_to_P2PKH(wif):
     public_key = get_pubkey(private_key)
     public_address = pubkey_to_P2PKH(public_key)
     return public_address
+
+def wif_to_P2SHpP2WPKH(wif):
+    hex_prv = wif_to_hex_prv(wif)
+    private_key = bytes.fromhex(hex_prv)
+    public_key = get_pubkey(private_key)
+    public_address = pubkey_to_P2SHpP2WPKH(public_key)
+    return public_address
+
+def wif_to_bech32(wif):
+    hex_prv = wif_to_hex_prv(wif)
+    private_key = bytes.fromhex(hex_prv)
+    public_key = get_pubkey(private_key)
+    public_address = pubkey_to_bech32(public_key)
+    return public_address

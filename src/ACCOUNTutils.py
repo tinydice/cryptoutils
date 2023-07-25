@@ -67,6 +67,8 @@ class Account:
             self.wallets.append(Wallet(self.seed, self.addressType, self.path, self.gapLimit))
 
     def spillAddresses(self):
+        print(f'XPUB:')
+        print(f"    {self.wallets[0].addresses[0].xpub.serialize()}")
         print(f'Mnemonic:')
         print(f"    {self.mnemonic} {self.passphrase}")
         for i in range(len(self.wallets)) :
