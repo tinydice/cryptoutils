@@ -20,7 +20,7 @@ This Python script generates bitcoin wallets from a mnemonic (or cold-card dice-
 1. Read the warnings.
 1. Item 1
 2. Item 2
-    * Item 2a
+	    * Item 2a
     * Item 2b
 3. Fill out config.json
 a. 	input: 
