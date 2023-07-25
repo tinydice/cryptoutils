@@ -29,7 +29,12 @@ a. 	input:
 	d. wallet_types: Set wallet type (public key type). Eg. "BIP44" (Legacy) or "BIP49" (P2WPKH) or "BIP84" (bech32 segwit). (string)
 	e. gap_limit: Set how many deposit and change addresses you want to see (each). Eg. 5 or 10 or 11 or 1000. (any positive integer)
 	f. is_private: Set True if you do NOT want to print the private key WIF. (boolean)
-
+* Item 1
+* Item 2
+* Item 3
+  * Sub Item A
+  * Sub Item B
+    
 ## WARNINGS
 1. input:
 	a. If you enter a mnemonic. DO NOT run this script on a device that has been or will ever connect to the internet. (Unless you are willing to 		lose all funds). 
