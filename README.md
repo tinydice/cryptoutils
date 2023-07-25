@@ -18,10 +18,6 @@ This Python script generates bitcoin wallets from a mnemonic (or cold-card dice-
 ## Usage
 
 1. Read the warnings.
-1. Item 1
-2. Item 2
-	    * Item 2a
-    * Item 2b
 3. Fill out config.json
 	* input: 
 		i. Mnemonic "inhale anger power ... " (bip39 compliant string with spaces between each word)
@@ -37,9 +33,9 @@ This Python script generates bitcoin wallets from a mnemonic (or cold-card dice-
     
 ## WARNINGS
 1. input:
-	a. If you enter a mnemonic. DO NOT run this script on a device that has been or will ever connect to the internet. (Unless you are willing to 		lose all funds). 
-	b. If you enter a blank input. DO NOT use any wallet derived to store funds (Unless you are willing to lose all funds).
+	* If you enter a mnemonic. DO NOT run this script on a device that has been or will ever connect to the internet. (Unless you are willing to 		lose all funds). 
+	* If you enter a blank input. DO NOT use any wallet derived to store funds (Unless you are willing to lose all funds).
 2. wallet_types: While the same public key is used 
 3. is_private:
-   	a. Since private key WIFs are still calculated (and just not printed if is_private = True). Do not think of this as a security feature - input 		warnigns still apply.
+   	* Since private key WIFs are still calculated (and just not printed if is_private = True). Do not think of this as a security feature - input 		warnigns still apply.
 4. I am not legally responsible for the loss of funds resulting in the misuse of any python code in this repository. 
