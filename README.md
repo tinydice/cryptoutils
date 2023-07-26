@@ -4,7 +4,7 @@ This Python script generates bitcoin wallets from a mnemonic (or cold-card dice-
 
 ## Installation
 
-1. Clone the repository or download the script file.
+1. Clone the repository.
 2. Run main.py and install packages that cause 'missing module' errors:
 
  	pip install \<missing-package\>
