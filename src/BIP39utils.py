@@ -174,6 +174,19 @@ window wine wing wink winner winter wire wisdom wise wish witness wolf woman
 wonder wood wool word work world worry worth wrap wreck wrestle wrist write
 wrong yard year yellow you young youth zebra zero zone zoo'''.split()
 
+def mnemonic_to_indicies(mnemonic):
+    index_list = []
+    for word in mnemonic.split():
+        index_list.append(str(wordList.index(word)).zfill(4))
+    return ' '.join(index_list)
+
+def indicies_to_mnemonic(indices_list):
+    mnemonic = ""
+    for index in indices_list.split():
+        word = wordList[int(index)]
+        mnemonic += word + " "
+    return mnemonic.strip()
+
 def get_mnemonic(entropyHash, wordCount):
     if (wordCount) == 24:
         v = int.from_bytes(entropyHash, 'big') << 8

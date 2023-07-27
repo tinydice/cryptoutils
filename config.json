@@ -3,6 +3,5 @@
     "word_count": 12,
     "passphrase": "",
     "wallet_types": "BIP44",
-    "gap_limit": 5,
-    "is_private": false
+    "gap_limit": 5
 }

@@ -26,7 +26,6 @@ class Account:
         self.walletTypes = self.info['wallet_types']
         self.walletTypes = [self.walletTypes] if isinstance(self.walletTypes, str) else self.walletTypes
         self.gapLimit = self.info['gap_limit']
-        self.isPrivate = self.info['is_private']
 
         if self.input == "":
             self.seedType = seedType.DICE_ROLL
@@ -51,6 +50,8 @@ class Account:
             self.entropyHash = None
             self.mnemonic = self.input
 
+        self.mnemonic_indicies = mnemonic_to_indicies(self.mnemonic)
+
         self.wallets = []
 
         for walletType in self.walletTypes:
@@ -73,15 +74,23 @@ class Account:
             self.wallets.append(Wallet(self.root_xprv, self.addressType, self.path, self.gapLimit))
 
     def spillAddresses(self):
+        if (self.passphrase != ''):
+            print(f'Passphrase:')
+            print(f"    {self.passphrase}")
         print(f'Mnemonic:')
         print(f"    {self.mnemonic} {self.passphrase}")
+        self.verifyResult = green("✔") if (indicies_to_mnemonic(self.mnemonic_indicies) == self.mnemonic) else red("X")
+        print(f'Indicies:')
+        print(f'    {self.mnemonic_indicies}     {self.verifyResult}')
+        print(f'XPRV:')
+        print(f"    {self.xprv.serialize()}")
         print(f'XPUB:')
         print(f"    {self.xpub.serialize()}")
         for i in range(len(self.wallets)) :
             wallet_type = self.walletTypes[i]
             print(f'Addresses:         ({wallet_type})')
             for address in self.wallets[i].addresses:
-                address.spill_address(self.isPrivate)
+                address.spill_address(False)
             print(f'Change Addresses:  ({wallet_type})')
             for changeAddress in self.wallets[i].changeAddresses:
-                changeAddress.spill_address(self.isPrivate)
+                changeAddress.spill_address(False)
