@@ -177,13 +177,13 @@ wrong yard year yellow you young youth zebra zero zone zoo'''.split()
 def mnemonic_to_indicies(mnemonic):
     index_list = []
     for word in mnemonic.split():
-        index_list.append(str(wordList.index(word)).zfill(4))
+        index_list.append(str(wordList.index(word)+1).zfill(4))
     return ' '.join(index_list)
 
 def indicies_to_mnemonic(indices_list):
     mnemonic = ""
     for index in indices_list.split():
-        word = wordList[int(index)]
+        word = wordList[int(index)-1]
         mnemonic += word + " "
     return mnemonic.strip()
 
